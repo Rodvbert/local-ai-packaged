@@ -9,7 +9,6 @@ This module defines a Pipe class that utilizes N8N for an Agent
 
 from typing import Optional, Callable, Awaitable
 from pydantic import BaseModel, Field
-import os
 import time
 import requests
 
@@ -106,7 +105,7 @@ class Pipe:
                 else:
                     raise Exception(f"Error: {response.status_code} - {response.text}")
 
-                # Set assitant message with chain reply
+                # Set assistant message with chain reply
                 body["messages"].append({"role": "assistant", "content": n8n_response})
             except Exception as e:
                 await self.emit_status(
